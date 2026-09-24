@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" width="980" height="640" font-family="Consolas, Menlo, monospace">
+  <rect width="980" height="640" fill="#ffffff"/>
+  <text x="490" y="34" font-size="26" font-family="sans-serif" font-weight="bold" text-anchor="middle" fill="#111">USB-щуп: подключение</text>
+  <text x="490" y="60" font-size="15" font-family="sans-serif" text-anchor="middle" fill="#666">USB-A штекер втыкается в тестируемый порт ПК</text>
+
+  <!-- USB-A connector -->
+  <rect x="40" y="140" width="150" height="230" rx="12" fill="#c9ccd1" stroke="#7d838a" stroke-width="3"/>
+  <rect x="64" y="166" width="102" height="178" rx="6" fill="#eef0f2" stroke="#9aa2a8" stroke-width="2"/>
+  <text x="115" y="126" font-size="18" text-anchor="middle" font-family="sans-serif" fill="#222">USB-A</text>
+  <g font-size="15">
+    <text x="72" y="194">1 VBUS</text>
+    <text x="72" y="244">2 D−</text>
+    <text x="72" y="294">3 D+</text>
+    <text x="72" y="344">4 GND</text>
+  </g>
+
+  <!-- VBUS line: run right along the top, then down into the divider -->
+  <polyline points="190,180 680,180 680,214" fill="none" stroke="#c0392b" stroke-width="3"/>
+  <rect x="646" y="214" width="68" height="30" rx="4" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+  <text x="680" y="235" font-size="16" text-anchor="middle" fill="#c0392b">100к</text>
+  <line x1="680" y1="244" x2="680" y2="300" stroke="#c0392b" stroke-width="3"/>
+  <circle cx="680" cy="300" r="7" fill="#c0392b"/>
+  <line x1="680" y1="300" x2="820" y2="300" stroke="#0a7a2f" stroke-width="3"/>
+  <text x="834" y="295" font-size="19" fill="#0a7a2f">GP26</text>
+  <text x="834" y="317" font-size="14" font-family="sans-serif" fill="#666">пин 7</text>
+  <line x1="680" y1="300" x2="680" y2="356" stroke="#c0392b" stroke-width="3"/>
+  <rect x="646" y="356" width="68" height="30" rx="4" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+  <text x="680" y="377" font-size="16" text-anchor="middle" fill="#c0392b">100к</text>
+  <line x1="680" y1="386" x2="680" y2="420" stroke="#c0392b" stroke-width="3"/>
+  <line x1="654" y1="420" x2="706" y2="420" stroke="#333" stroke-width="3"/>
+  <line x1="664" y1="428" x2="696" y2="428" stroke="#333" stroke-width="3"/>
+  <line x1="674" y1="436" x2="686" y2="436" stroke="#333" stroke-width="3"/>
+  <text x="718" y="426" font-size="15" fill="#333">GND</text>
+
+  <text x="740" y="180" font-size="15" font-family="sans-serif" fill="#666">оба резистора</text>
+  <text x="740" y="200" font-size="15" font-family="sans-serif" fill="#666">по 100к</text>
+  <text x="740" y="292" font-size="15" font-family="sans-serif" fill="#666">средняя точка →</text>
+  <text x="740" y="312" font-size="15" font-family="sans-serif" fill="#666">сюда идёт GP26</text>
+
+  <!-- D- line -->
+  <polyline points="190,230 232,230" fill="none" stroke="#333" stroke-width="3"/>
+  <rect x="232" y="215" width="60" height="30" rx="4" fill="#fff" stroke="#333" stroke-width="2"/>
+  <text x="262" y="236" font-size="16" text-anchor="middle">1к</text>
+  <polyline points="292,230 560,230" fill="none" stroke="#333" stroke-width="3"/>
+  <text x="574" y="225" font-size="19" fill="#0a7a2f">GP27</text>
+  <text x="574" y="246" font-size="14" font-family="sans-serif" fill="#666">D−, пин 6</text>
+
+  <!-- D+ line -->
+  <polyline points="190,280 232,280" fill="none" stroke="#333" stroke-width="3"/>
+  <rect x="232" y="265" width="60" height="30" rx="4" fill="#fff" stroke="#333" stroke-width="2"/>
+  <text x="262" y="286" font-size="16" text-anchor="middle">1к</text>
+  <polyline points="292,280 560,280" fill="none" stroke="#333" stroke-width="3"/>
+  <text x="574" y="275" font-size="19" fill="#0a7a2f">GP28</text>
+  <text x="574" y="296" font-size="14" font-family="sans-serif" fill="#666">D+, пин 5</text>
+
+  <!-- GND line -->
+  <polyline points="190,330 560,330" fill="none" stroke="#555" stroke-width="3"/>
+  <text x="574" y="325" font-size="19" fill="#333">GND</text>
+  <text x="574" y="346" font-size="14" font-family="sans-serif" fill="#666">пин 2</text>
+  <text x="330" y="322" font-size="13" font-family="sans-serif" fill="#777">общая земля обязательна</text>
+
+  <!-- BAT54S note -->
+  <g>
+    <rect x="20" y="470" width="455" height="150" rx="10" fill="#f6f8f6" stroke="#c9d3c9"/>
+    <text x="36" y="498" font-size="17" font-family="sans-serif" font-weight="bold">Защита BAT54S (SOT-23)</text>
+    <text x="36" y="524" font-size="14" font-family="sans-serif">1 — анод нижнего диода → GND</text>
+    <text x="36" y="546" font-size="14" font-family="sans-serif">2 — катод верхнего диода → 3V3</text>
+    <text x="36" y="568" font-size="14" font-family="sans-serif">3 — середина → узел между 1к и пином</text>
+    <text x="36" y="598" font-size="13" font-family="sans-serif" fill="#777">нужны две сборки: на D+ и на D−. Резисторы 1к обязательны всегда.</text>
+  </g>
+
+  <!-- reference resistor -->
+  <g>
+    <rect x="500" y="470" width="460" height="150" rx="10" fill="#f6f8f6" stroke="#c9d3c9"/>
+    <text x="516" y="498" font-size="17" font-family="sans-serif" font-weight="bold">Эталон для калибровки</text>
+    <line x1="540" y1="546" x2="600" y2="546" stroke="#333" stroke-width="3"/>
+    <rect x="600" y="531" width="70" height="30" rx="4" fill="#fff" stroke="#333" stroke-width="2"/>
+    <text x="635" y="552" font-size="16" text-anchor="middle">10к</text>
+    <line x1="670" y1="546" x2="760" y2="546" stroke="#333" stroke-width="3"/>
+    <line x1="760" y1="532" x2="760" y2="560" stroke="#333" stroke-width="3"/>
+    <line x1="770" y1="538" x2="770" y2="554" stroke="#333" stroke-width="3"/>
+    <text x="540" y="528" font-size="17" fill="#0a7a2f">GP29 (пин 4)</text>
+    <text x="784" y="552" font-size="15">GND</text>
+    <text x="516" y="598" font-size="13" font-family="sans-serif" fill="#777">по нему прошивка измеряет свою внутреннюю подтяжку</text>
+  </g>
+</svg>

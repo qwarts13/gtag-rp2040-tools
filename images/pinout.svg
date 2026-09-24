@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 700" width="980" height="700" font-family="Consolas, Menlo, monospace">
+  <rect width="980" height="700" fill="#ffffff"/>
+  <text x="490" y="34" font-size="26" font-family="sans-serif" font-weight="bold" text-anchor="middle" fill="#111">Распиновка RP2040-Zero</text>
+  <text x="490" y="60" font-size="15" font-family="sans-serif" text-anchor="middle" fill="#666">вид сверху, USB-C сверху. Зелёным отмечены занятые выводы</text>
+
+  <!-- board body -->
+  <rect x="330" y="110" width="320" height="520" rx="26" fill="#2f4f3f" stroke="#1b2f26" stroke-width="3"/>
+  <rect x="418" y="86" width="144" height="52" rx="8" fill="#9aa2a8" stroke="#6d757a" stroke-width="2"/>
+  <text x="490" y="118" font-size="15" text-anchor="middle" fill="#2b2b2b" font-family="sans-serif">USB-C</text>
+
+  <!-- left header: 9 pads, top to bottom -->
+  <!-- right header: 9 pads -->
+  <!-- bottom: 5 pads -->
+
+  <!-- helper style: pads -->
+  <g fill="#d8c07a" stroke="#8a7434" stroke-width="2">
+    <!-- left -->
+    <rect x="318" y="150" width="30" height="22" rx="4"/>
+    <rect x="318" y="196" width="30" height="22" rx="4"/>
+    <rect x="318" y="242" width="30" height="22" rx="4"/>
+    <rect x="318" y="288" width="30" height="22" rx="4"/>
+    <rect x="318" y="334" width="30" height="22" rx="4"/>
+    <rect x="318" y="380" width="30" height="22" rx="4"/>
+    <rect x="318" y="426" width="30" height="22" rx="4"/>
+    <rect x="318" y="472" width="30" height="22" rx="4"/>
+    <rect x="318" y="518" width="30" height="22" rx="4"/>
+    <!-- right -->
+    <rect x="632" y="150" width="30" height="22" rx="4"/>
+    <rect x="632" y="196" width="30" height="22" rx="4"/>
+    <rect x="632" y="242" width="30" height="22" rx="4"/>
+    <rect x="632" y="288" width="30" height="22" rx="4"/>
+    <rect x="632" y="334" width="30" height="22" rx="4"/>
+    <rect x="632" y="380" width="30" height="22" rx="4"/>
+    <rect x="632" y="426" width="30" height="22" rx="4"/>
+    <rect x="632" y="472" width="30" height="22" rx="4"/>
+    <rect x="632" y="518" width="30" height="22" rx="4"/>
+    <!-- bottom -->
+    <rect x="366" y="600" width="22" height="30" rx="4"/>
+    <rect x="418" y="600" width="22" height="30" rx="4"/>
+    <rect x="470" y="600" width="22" height="30" rx="4"/>
+    <rect x="522" y="600" width="22" height="30" rx="4"/>
+    <rect x="574" y="600" width="22" height="30" rx="4"/>
+  </g>
+
+  <g font-size="19" fill="#111">
+    <!-- left: labels at x=312, right aligned -->
+    <text x="310" y="167" text-anchor="end">5V</text><text x="300" y="167" text-anchor="end" font-size="13" fill="#999">(1)</text>
+    <text x="310" y="213" text-anchor="end">GND</text><text x="300" y="213" text-anchor="end" font-size="13" fill="#999">(2)</text>
+    <text x="310" y="259" text-anchor="end">3V3</text><text x="300" y="259" text-anchor="end" font-size="13" fill="#999">(3)</text>
+    <text x="310" y="305" text-anchor="end" fill="#0a7a2f">GP29</text><text x="300" y="305" text-anchor="end" font-size="13" fill="#999">(4)</text>
+    <text x="310" y="351" text-anchor="end" fill="#0a7a2f">GP28</text><text x="300" y="351" text-anchor="end" font-size="13" fill="#999">(5)</text>
+    <text x="310" y="397" text-anchor="end" fill="#0a7a2f">GP27</text><text x="300" y="397" text-anchor="end" font-size="13" fill="#999">(6)</text>
+    <text x="310" y="443" text-anchor="end" fill="#0a7a2f">GP26</text><text x="300" y="443" text-anchor="end" font-size="13" fill="#999">(7)</text>
+    <text x="310" y="489" text-anchor="end" fill="#0a7a2f">GP15</text><text x="300" y="489" text-anchor="end" font-size="13" fill="#999">(8)</text>
+    <text x="310" y="535" text-anchor="end" fill="#0a7a2f">GP14</text><text x="300" y="535" text-anchor="end" font-size="13" fill="#999">(9)</text>
+
+    <!-- right: labels at x=670 -->
+    <text x="672" y="167">GP0</text><text x="740" y="167" font-size="13" fill="#999">(23)</text>
+    <text x="672" y="213">GP1</text><text x="740" y="213" font-size="13" fill="#999">(22)</text>
+    <text x="672" y="259">GP2</text><text x="740" y="259" font-size="13" fill="#999">(21)</text>
+    <text x="672" y="305">GP3</text><text x="740" y="305" font-size="13" fill="#999">(20)</text>
+    <text x="672" y="351">GP4</text><text x="740" y="351" font-size="13" fill="#999">(19)</text>
+    <text x="672" y="397">GP5</text><text x="740" y="397" font-size="13" fill="#999">(18)</text>
+    <text x="672" y="443">GP6</text><text x="740" y="443" font-size="13" fill="#999">(17)</text>
+    <text x="672" y="489" fill="#0a7a2f">GP7</text><text x="740" y="489" font-size="13" fill="#999">(16)</text>
+    <text x="672" y="535" fill="#0a7a2f">GP8</text><text x="740" y="535" font-size="13" fill="#999">(15)</text>
+  </g>
+
+  <!-- bottom labels, rotated -->
+  <g font-size="17" fill="#0a7a2f">
+    <text x="377" y="626" text-anchor="end" transform="rotate(-90 377 626)">GP13</text>
+    <text x="429" y="626" text-anchor="end" transform="rotate(-90 429 626)">GP12</text>
+    <text x="481" y="626" text-anchor="end" transform="rotate(-90 481 626)">GP11</text>
+    <text x="533" y="626" text-anchor="end" transform="rotate(-90 533 626)">GP10</text>
+    <text x="585" y="626" text-anchor="end" transform="rotate(-90 585 626)">GP9</text>
+  </g>
+
+  <!-- legend -->
+  <g font-family="sans-serif" font-size="15">
+    <rect x="20" y="120" width="270" height="300" rx="10" fill="#f6f8f6" stroke="#c9d3c9"/>
+    <text x="36" y="150" font-size="17" font-weight="bold" fill="#111">Что куда идёт</text>
+    <g fill="#222">
+      <text x="36" y="182">GP8</text><text x="130" y="182">экран RESET</text>
+      <text x="36" y="208">GP9</text><text x="130" y="208">экран CS</text>
+      <text x="36" y="234">GP10</text><text x="130" y="234">экран CLK</text>
+      <text x="36" y="260">GP11</text><text x="130" y="260">экран DIO</text>
+      <text x="36" y="286">GP26</text><text x="130" y="286">щуп VBUS, делитель 100к/100к</text>
+      <text x="36" y="312">GP27</text><text x="130" y="312">щуп D−, резистор 1к</text>
+      <text x="36" y="338">GP28</text><text x="130" y="338">щуп D+, резистор 1к</text>
+      <text x="36" y="364">GP29</text><text x="130" y="364">эталон 10к на GND</text>
+      <text x="36" y="390">GP7</text><text x="130" y="390">динамик</text>
+    </g>
+    <text x="36" y="410" font-size="13" fill="#777">пин 2 = GND, пин 3 = 3V3, пин 1 = 5V</text>
+  </g>
+</svg>

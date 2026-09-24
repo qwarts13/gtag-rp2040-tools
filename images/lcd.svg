@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" width="980" height="620" font-family="Consolas, Menlo, monospace">
+  <rect width="980" height="620" fill="#ffffff"/>
+  <text x="490" y="34" font-size="26" font-family="sans-serif" font-weight="bold" text-anchor="middle" fill="#111">Подключение экрана G-Tag</text>
+  <text x="490" y="60" font-size="15" font-family="sans-serif" text-anchor="middle" fill="#666">четыре сигнальных провода плюс земля. Плата ценника остаётся в сборе</text>
+
+  <!-- RP2040 board -->
+  <rect x="60" y="150" width="250" height="330" rx="20" fill="#2f4f3f" stroke="#1b2f26" stroke-width="3"/>
+  <text x="185" y="186" font-size="20" font-family="sans-serif" text-anchor="middle" fill="#e8f0e8">RP2040-Zero</text>
+  <text x="185" y="212" font-size="14" font-family="sans-serif" text-anchor="middle" fill="#a9c0b0">USB-C сверху</text>
+  <g fill="#d8c07a" stroke="#8a7434" stroke-width="2">
+    <rect x="284" y="250" width="26" height="20" rx="4"/>
+    <rect x="284" y="292" width="26" height="20" rx="4"/>
+    <rect x="284" y="334" width="26" height="20" rx="4"/>
+    <rect x="284" y="376" width="26" height="20" rx="4"/>
+    <rect x="284" y="418" width="26" height="20" rx="4"/>
+  </g>
+  <g font-size="17">
+    <text x="270" y="265" text-anchor="end" fill="#fff">GP8</text>
+    <text x="270" y="307" text-anchor="end" fill="#fff">GP9</text>
+    <text x="270" y="349" text-anchor="end" fill="#fff">GP10</text>
+    <text x="270" y="391" text-anchor="end" fill="#fff">GP11</text>
+    <text x="270" y="433" text-anchor="end" fill="#fff">GND</text>
+  </g>
+
+  <!-- wires -->
+  <g stroke-width="3" fill="none">
+    <line x1="310" y1="260" x2="640" y2="260" stroke="#c0392b"/>
+    <line x1="310" y1="302" x2="640" y2="302" stroke="#d68910"/>
+    <line x1="310" y1="344" x2="640" y2="344" stroke="#2471a3"/>
+    <line x1="310" y1="386" x2="640" y2="386" stroke="#1e8449"/>
+    <line x1="310" y1="428" x2="640" y2="428" stroke="#555"/>
+  </g>
+  <g font-size="15" font-family="sans-serif" fill="#444">
+    <text x="400" y="250">RESET</text>
+    <text x="400" y="292">CS</text>
+    <text x="400" y="334">CLK</text>
+    <text x="400" y="376">DIO</text>
+    <text x="400" y="418">GND</text>
+  </g>
+
+  <!-- LCD panel -->
+  <rect x="640" y="190" width="300" height="270" rx="10" fill="#f2f3f5" stroke="#7d838a" stroke-width="3"/>
+  <rect x="668" y="222" width="244" height="170" rx="4" fill="#ffffff" stroke="#b9c0c6" stroke-width="2"/>
+  <text x="790" y="212" font-size="18" font-family="sans-serif" text-anchor="middle" fill="#222">Экран G-Tag 256×128</text>
+  <g font-family="Consolas, monospace" font-size="19" fill="#555">
+    <text x="684" y="256">VBUS</text><text x="856" y="256" text-anchor="end">4.77V</text>
+    <text x="684" y="288">D−</text><text x="856" y="288" text-anchor="end">0.02V 24K</text>
+    <text x="684" y="320">D+</text><text x="856" y="320" text-anchor="end">0.02V 23K</text>
+    <text x="684" y="352">GND</text><text x="856" y="352" text-anchor="end">USB ТЕСТЕР</text>
+  </g>
+  <text x="790" y="440" font-size="14" font-family="sans-serif" text-anchor="middle" fill="#666">DIO · CLK · CS · RESET · GND</text>
+
+  <!-- tag board -->
+  <rect x="640" y="486" width="300" height="110" rx="10" fill="#4a3b2a" stroke="#2e2418" stroke-width="3"/>
+  <text x="790" y="518" font-size="18" font-family="sans-serif" text-anchor="middle" fill="#f0e6d8">Плата ценника</text>
+  <text x="790" y="544" font-size="14" font-family="sans-serif" text-anchor="middle" fill="#cbb99f">питание экрана и DisplayCLK 28,8 кГц</text>
+  <text x="790" y="568" font-size="13" font-family="sans-serif" text-anchor="middle" fill="#cbb99f">остаётся в сборе, дорожки перерезаются</text>
+  <line x1="640" y1="540" x2="610" y2="540" stroke="#4a3b2a" stroke-width="3"/>
+  <line x1="610" y1="540" x2="610" y2="460" stroke="#4a3b2a" stroke-width="3"/>
+  <line x1="610" y1="460" x2="640" y2="460" stroke="#4a3b2a" stroke-width="3"/>
+  <text x="420" y="540" font-size="14" font-family="sans-serif" fill="#666">DisplayCLK подаёт плата ценника,</text>
+  <text x="420" y="560" font-size="14" font-family="sans-serif" fill="#666">прошивка его не формирует</text>
+
+  <!-- notes -->
+  <g font-family="sans-serif" font-size="14" fill="#666">
+    <text x="60" y="112">Экран: RESET=GP8, CS=GP9, CLK=GP10, DIO=GP11, GND на пин 2</text>
+    <text x="60" y="134" fill="#a33">XCLK и TE не подключаем</text>
+  </g>
+</svg>
