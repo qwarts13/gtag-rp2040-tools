@@ -47,7 +47,6 @@ static constexpr bool     INK      = false;   // black ink on white paper
 static constexpr float    SHORT_V  = 0.5f;    // cross-line coupling threshold
 static constexpr uint32_t DRAW_MS  = 400;
 static constexpr uint32_t LOG_MS   = 1500;
-static constexpr uint32_t BOOT_MODE_MS = 6000;  // decide the mode by then
 static constexpr uint32_t PRESS_LONG_MS = 700;  // longer than this = mode switch
 
 static float g_pullup = PULLUP_NOMINAL;   // refined by calibration
@@ -475,7 +474,7 @@ static void render_init() {
 //  Sketch
 // ============================================================
 static Mode     g_mode   = MODE_PORT;
-static bool     g_locked = false;   // the user has chosen a mode by hand
+static bool     g_manual = false;   // the user has chosen a mode by hand
 
 // 0 = nothing, 1 = short press, 2 = long press. BOOTSEL reads the flash CS
 // pad, so only sample it on demand.
@@ -511,10 +510,11 @@ static uint8_t button_event() {
 
 static void switch_mode() {
   g_mode = (g_mode == MODE_PORT) ? MODE_INIT : MODE_PORT;
-  g_locked = true;
+  g_manual = true;
   if (g_mode == MODE_INIT) init_test_reset();
   else                     buzzer_beep(1, 80);
-  Serial.printf("mode: %s\n", (g_mode == MODE_INIT) ? "init tester" : "port tester");
+  Serial.printf("mode: %s (manual until replug)\n",
+                (g_mode == MODE_INIT) ? "init tester" : "port tester");
 }
 
 void setup() {
@@ -556,12 +556,49 @@ void setup() {
 void loop() {
   const uint32_t now = millis();
 
-  // ---- mode decision: charger or computer? ----
-  if (!g_locked && (uint32_t)now > BOOT_MODE_MS) {
-    g_mode = TinyUSBDevice.mounted() ? MODE_INIT : MODE_PORT;
-    g_locked = true;
+  // ---- follow the host, forever ----
+  // An enumerated host means we are on a computer, so this is the init tester.
+  // No host at all means a charger, so this is the port tester. The check runs
+  // on every pass and never gives up: a machine that only brings its USB up
+  // after several minutes is still caught, and the timeline starts at that
+  // moment. Replugging clears any manual choice.
+  static bool prevMounted = false;
+  const bool mounted = TinyUSBDevice.mounted();
+  if (mounted != prevMounted) {
+    g_manual = false;
+    if (mounted) {
+      if (it_t0 == 0) {
+        it_t0 = now;
+        if (!it_beeped) { it_beeped = true; beep_joy(); }
+        Serial.println("INIT   enumerated");
+      } else if (!it_os_seen) {
+        it_os_seen = true;
+        it_os = now;
+        Serial.printf("OS     re-enumerated   %.1f s\n", (it_os - it_t0) / 1000.0f);
+      }
+    }
+    prevMounted = mounted;
+  }
+
+  const Mode autoMode = mounted ? MODE_INIT : MODE_PORT;
+  if (!g_manual && g_mode != autoMode) {
+    g_mode = autoMode;
     Serial.printf("mode: %s (auto)\n",
                   (g_mode == MODE_INIT) ? "init tester" : "port tester");
+  }
+
+  // ---- host-driven milestones, no key presses anywhere ----
+  if (it_t0 != 0 && it_led == 0 && led_reports > 0) {
+    it_led = now;
+    Serial.printf("LED    host set lamps  %.1f s\n", (it_led - it_t0) / 1000.0f);
+  }
+
+  const bool reportProto = (usb_hid.getProtocol() == HID_PROTOCOL_REPORT);
+  if (!reportProto) it_saw_boot = true;
+  if (it_saw_boot && reportProto && it_t0 != 0 && !it_os_seen) {
+    it_os_seen = true;
+    it_os = now;
+    Serial.printf("OS     report protocol %.1f s\n", (it_os - it_t0) / 1000.0f);
   }
 
   // ---- one button, two gestures ----
@@ -592,36 +629,7 @@ void loop() {
       if (++tick >= 5) { tick = 0; print_reading(r); }
     }
   } else {
-    // ---- init tester ----
-    static bool prevMounted = false;
-    const bool mounted = TinyUSBDevice.mounted();
-
-    if (mounted && !prevMounted) {
-      if (it_t0 == 0) {
-        it_t0 = now;
-        if (!it_beeped) { it_beeped = true; beep_joy(); }
-        Serial.println("INIT   enumerated");
-      } else if (!it_os_seen) {
-        it_os_seen = true;
-        it_os = now;
-        Serial.printf("OS     re-enumerated   %.1f s\n", (it_os - it_t0) / 1000.0f);
-      }
-    }
-    prevMounted = mounted;
-
-    if (it_led == 0 && led_reports > 0) {
-      it_led = now;
-      Serial.printf("LED    host set lamps  %.1f s\n", (it_led - it_t0) / 1000.0f);
-    }
-
-    const bool reportProto = (usb_hid.getProtocol() == HID_PROTOCOL_REPORT);
-    if (!reportProto) it_saw_boot = true;
-    if (it_saw_boot && reportProto && it_t0 != 0 && !it_os_seen) {
-      it_os_seen = true;
-      it_os = now;
-      Serial.printf("OS     report protocol %.1f s\n", (it_os - it_t0) / 1000.0f);
-    }
-
+    // ---- init tester: only the screen here, milestones are handled above ----
     static uint32_t tDraw = 0;
     if ((uint32_t)(now - tDraw) >= DRAW_MS) {
       tDraw = now;
